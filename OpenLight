@@ -41,8 +41,8 @@ trigger:
   entity_id: !input trigger_device
   from: "off"
   to: "on"
-
-- choose:
+action:
+  - choose:
       - conditions: "{{ guard_model }}"
         sequence:
           - service: light.turn_on
