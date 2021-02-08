@@ -29,8 +29,9 @@ blueprint:
       selector:
         target:
           entity:
-            domain: light
-
+            domain: 
+              - light
+              - switch
 # If motion is detected within the delay,
 # we restart the script.
 mode: single
