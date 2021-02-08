@@ -44,5 +44,5 @@ action:
   - choose:
       - conditions: "{{ guard_model }}"
         sequence:
-          - service: light.turn_on
+          - service: switch.turn_on
             target: !input light_target
