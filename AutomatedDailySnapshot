@@ -4,18 +4,18 @@ blueprint:
   domain: automation
   input:
     trigger_time:
-      name: Snapshot creation time
+      name: 快照创建时间
       description: 快照的创建时间，每天进行一次
       selector:
         time:
     send_notification:
-      name: Send notification
+      name: 发送通知
       description: 是否向设备推送通知
       selector:
         boolean:
       default: false
     notify_device:
-      name: Device to notify
+      name: 接收通知设备
       description: 接收通知的设备需要已经安装Home Assistant APP并已经登录
       selector:
         device:
