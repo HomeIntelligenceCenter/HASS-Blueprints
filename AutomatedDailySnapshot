@@ -1,5 +1,5 @@
 blueprint:
-  name: Automated Daily Snapshot
+  name: 每日自动创建快照
   description: 每天定时创建完整的快照.
   domain: automation
   input:
