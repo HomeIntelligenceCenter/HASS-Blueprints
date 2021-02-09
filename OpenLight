@@ -30,10 +30,21 @@ blueprint:
         target:
           entity:
             domain: switch
+    notify_device:
+      name: 接收通知设备
+      description: 接收通知的设备需要已经安装Home Assistant APP并已经登录
+      selector:
+        device:
+          integration: mobile_app
+      default: ""
 # If motion is detected within the delay,
 # we restart the script.
 mode: single
 max_exceeded: silent
+
+variables:
+  notification_title: 自动创建快照
+  notification_message: "Home Assistant 完整快照已经创建"
 
 trigger:
   platform: state
@@ -49,5 +60,8 @@ action:
   - choose:
       - conditions: "{{ guard_model }}"
         sequence:
-          - service: switch.turn_on
-            target: !input light_target
+          - device_id: !input notify_device 
+            domain: mobile_app
+            type: notify
+            title: "{{ notification_title }}"
+            message: "{{ notification_message }}"
