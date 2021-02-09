@@ -29,7 +29,7 @@ variables:
   backup_filename: "Automated backup {{ now().strftime('%F') }}"
   send_notification: !input send_notification
   notify_device: !input notify_device
-  notification_title: Automated Daily Backup
+  notification_title: 自动创建快照
   notification_message: "Home Assistant 完整快照已经创建. {{ now().strftime('%F') }}"
 
 trigger:
