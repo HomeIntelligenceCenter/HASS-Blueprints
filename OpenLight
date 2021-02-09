@@ -42,6 +42,11 @@ trigger:
   to: "on"
 action:
   - choose:
+      - conditions: "{{ not(guard_model) }}"
+        sequence:
+          - service: switch.turn_on
+            target: !input light_target
+  - choose:
       - conditions: "{{ guard_model }}"
         sequence:
           - service: switch.turn_on
