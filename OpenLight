@@ -67,10 +67,10 @@ action:
   #     title: '{{ notification_title }}'
   #     message: '{{ notification_message }}'
   - choose:
-  - conditions: "{{ guard_model }}"
-    sequence:
-      - service: switch.turn_on
-        target: !input light_target
+    - conditions: "{{ guard_model }}"
+      sequence:
+        - service: switch.turn_on
+          target: !input light_target
 # action: 
 #   - service: switch.turn_on
 #     target: !input light_target
