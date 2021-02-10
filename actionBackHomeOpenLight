@@ -30,8 +30,7 @@ blueprint:
         target:
           entity:
             domain: switch
-# If motion is detected within the delay,
-# we restart the script.
+
 mode: single
 max_exceeded: silent
 
