@@ -42,9 +42,9 @@ blueprint:
 mode: single
 max_exceeded: silent
 
-variables:
-  notification_title: 自动创建快照
-  notification_message: "Home Assistant 完整快照已经创建"
+# variables:
+#   notification_title: 自动创建快照
+#   notification_message: "Home Assistant 完整快照已经创建"
 
 trigger:
   platform: state
