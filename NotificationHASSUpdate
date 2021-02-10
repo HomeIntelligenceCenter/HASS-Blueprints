@@ -28,13 +28,13 @@ blueprint:
           unit_of_measurement: seconds
           mode: slider
     notify_device:
-      name: 接受通知设备
+      name: 接收通知的设备
       description: 设备需要安装有HASS官方APP
       selector:
         device:
           integration: mobile_app
     include_release_notes:
-      name: 包含更新详情
+      name: 通知中包含更新详情
       description: 开启后会在通知中包含更新的说明，默认开启
       selector:
         boolean:
