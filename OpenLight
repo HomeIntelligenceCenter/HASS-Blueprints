@@ -42,6 +42,7 @@ trigger:
 condition:
   condition: state
   entity_id: !input guard_entity
+  state: "true"
 
 action: 
   - service: switch.turn_on
