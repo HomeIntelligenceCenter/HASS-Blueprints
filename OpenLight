@@ -9,7 +9,7 @@ blueprint:
       selector:
         entity:
           domain: binary_sensor
-          device_class: contact
+          device_class: door
     guard_model:
       name: 警戒模式
       description: 警戒模式开启时是否自动开灯
