@@ -8,7 +8,7 @@ blueprint:
       description: The sensor which indicates if there's an update
       selector:
         entity:
-          domain: binary_sensor
+          domain: updater
     notification_title:
       name: Notification title (Optional)
       description: 'Default: "Upgrade time!"'
