@@ -30,13 +30,13 @@ blueprint:
         target:
           entity:
             domain: switch
-    notify_device:
-      name: 接收通知设备
-      description: 接收通知的设备需要已经安装Home Assistant APP并已经登录
-      selector:
-        device:
-          integration: mobile_app
-      default: ""
+    # notify_device:
+    #   name: 接收通知设备
+    #   description: 接收通知的设备需要已经安装Home Assistant APP并已经登录
+    #   selector:
+    #     device:
+    #       integration: mobile_app
+    #   default: ""
 # If motion is detected within the delay,
 # we restart the script.
 mode: single
