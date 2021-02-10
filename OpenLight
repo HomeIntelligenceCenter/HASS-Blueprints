@@ -51,14 +51,23 @@ trigger:
   entity_id: !input trigger_device
   from: "off"
   to: "on"
-action:
-  - choose:
-    - conditon: and
-      conditions:
-      - condition: state
-        entity_id: !input guard_model
-  - service: switch.turn_on
-    target: !input light_target
+
+condition:
+  condition: state
+  entity_id: !input guard_entity
+
+action: 
+  - choose: 
+    - service: switch.turn_on
+      target: !input light_target
+# action:
+#   - choose:
+#     - conditon: and
+#       conditions:
+#       - condition: state
+#         entity_id: !input guard_model
+#   - service: switch.turn_on
+#     target: !input light_target
 # action:
 #   - choose:
 #       - conditions: "{{ !guard_model }}"
