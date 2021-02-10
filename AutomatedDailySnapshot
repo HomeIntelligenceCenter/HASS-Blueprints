@@ -1,51 +1,84 @@
 blueprint:
-  name: 每日自动创建快照
-  description: 每天定时创建完整的快照.
+  name: 天黑有人回家时打开灯
+  description: 天黑之后有人回家自动打开客厅灯（不调整其他房间的灯光）.
   domain: automation
   input:
-    trigger_time:
-      name: 快照创建时间
-      description: 快照的创建时间，每天进行一次
+    trigger_device:
+      name: 门窗传感器
+      description: 选择入户门的传感器，当该该传感器打开时判定为有人进入家中
       selector:
-        time:
-    send_notification:
-      name: 发送通知
-      description: 是否向设备推送通知
+        entity:
+          domain: binary_sensor
+          device_class: door
+    guard_model:
+      name: 警戒模式
+      description: 警戒模式开启时是否自动开灯
       selector:
         boolean:
       default: false
-    notify_device:
-      name: 接收通知设备
-      description: 接收通知的设备需要已经安装Home Assistant APP并已经登录
+    guard_entity:
+      name: 警戒状态
+      description: 选择需要判断的警戒状态
       selector:
-        device:
-          integration: mobile_app
+        entity:
+          domain: input_boolean
       default: ""
-
+    light_target:
+      name: 灯
+      description: 选择需要打开的灯
+      selector:
+        target:
+          entity:
+            domain: switch
+    # notify_device:
+    #   name: 接收通知设备
+    #   description: 接收通知的设备需要已经安装Home Assistant APP并已经登录
+    #   selector:
+    #     device:
+    #       integration: mobile_app
+    #   default: ""
+# If motion is detected within the delay,
+# we restart the script.
 mode: single
 max_exceeded: silent
 
-variables:
-  backup_filename: "Automated backup {{ now().strftime('%F') }}"
-  send_notification: !input send_notification
-  notify_device: !input notify_device
-  notification_title: 自动创建快照
-  notification_message: "Home Assistant 完整快照已经创建. {{ now().strftime('%F') }}"
+# variables:
+#   notification_title: 自动创建快照
+#   notification_message: "Home Assistant 完整快照已经创建"
 
 trigger:
-  - platform: time
-    at: !input trigger_time
+  platform: state
+  entity_id: !input trigger_device
+  from: "off"
+  to: "on"
+
+condition:
+  condition: state
+  entity_id: !input guard_entity
+  state: "off"
 
 action:
-  - service: hassio.snapshot_full
-    data:
-      name: "{{ backup_filename }}"
-
   - choose:
-      - conditions: "{{ send_notification }}"
+      - conditions: "{{ !guard_model }}"
         sequence:
-          - device_id: !input notify_device 
-            domain: mobile_app
-            type: notify
-            title: "{{ notification_title }}"
-            message: "{{ notification_message }}"
+          - service: switch.turn_on
+            target: !input light_target
+# action: 
+#   - service: switch.turn_on
+#     target: !input light_target
+# action:
+#   - choose:
+#     - conditon: and
+#       conditions:
+#       - condition: state
+#         entity_id: !input guard_model
+#   - service: switch.turn_on
+#     target: !input light_target
+#   - choose:
+#       - conditions: "{{ guard_model }}"
+#         sequence:
+#           - device_id: !input notify_device 
+#             domain: mobile_app
+#             type: notify
+#             title: "{{ notification_title }}"
+#             message: "{{ notification_message }}"
