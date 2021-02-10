@@ -3,12 +3,8 @@
 所收录的蓝图部分来自论坛及github，并由我将部分内容汉化，部分由本人创建。由于HASS通过UI创建自动化的指引不是很清楚，而使用Yaml文件创建自动化流程对普通用户要求过高。蓝图的初衷就是降低HASS创建自动化的难度，为了更加清楚的使用我将蓝图中相关说明文字翻译成汉语，方便使用。
 
 #设置-对HASS系统进行设置
-
 settingAutomatedDailySnapshot：根据指定时间每日创建快照
-
 seetingAutomationState：当指定家庭成员到达指定区域后关闭指定的自动化
-
-
 
 #通知-向APP推送通知
 NotificationHASSUpdate：HASS有新版版本可以更新时推送通知
