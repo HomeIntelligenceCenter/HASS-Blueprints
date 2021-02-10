@@ -57,9 +57,8 @@ condition:
   entity_id: !input guard_entity
 
 action: 
-  - choose: 
-    - service: switch.turn_on
-      target: !input light_target
+  - service: switch.turn_on
+    target: !input light_target
 # action:
 #   - choose:
 #     - conditon: and
