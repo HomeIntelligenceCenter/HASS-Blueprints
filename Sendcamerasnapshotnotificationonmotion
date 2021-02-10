@@ -1,52 +1,51 @@
 blueprint:
-  name: Send a camera snapshot when motion is detected
+  name: 检测到有人时发送画面通知
   description: >
-    This automation blueprint creates a camera snapshot if motion is detected 
-    and sends a notification to your phone with the picture.
+    当检测到有人运动时，向手机发送一个带有同一位置摄像头截图的通知。
   domain: automation
   input:
     motion_sensor:
-      name: Motion sensor
-      description: The sensor wich triggers the snapshot creation
+      name: 动作传感器
+      description: 选择动作传感器，此传感器用于检测是否有运动发生。
       selector:
           entity:
             domain: binary_sensor
             device_class: motion
 
     camera:
-      name: Camera
-      description: The camera which creates the snapshot
+      name: 摄像头
+      description: 选择摄像头，此摄像头用于截取动作发生地的图片。
       selector:
         entity:
           domain: camera
 
     notify_device:
-      name: Device to notify
-      description: Device needs to run the official Home Assistant app to receive notifications
+      name: 接受通知设备
+      description: 选择接收通知的设备，此设备需要已经安装HASS APP,并开启允许通知。
       selector:
         device:
           integration: mobile_app
 
     is_ios:
-      name: Is it an iOS device?
-      description: Toggle if your selected device runs iOS, default is Android
+      name: 是苹果设备吗?
+      description: 接受通知的设备是不是苹果设备？默认为安卓。
       selector:
         boolean:
       default: false
 
     notification_title:
-      name: Notification title (Optional)
-      description: 'Default: "Motion detected!"'
-      default: "Motion detected!"
+      name: 通知主题(可选)
+      description: '默认: "检测到运动!"'
+      default: "检测到有物体运动!"
 
     notification_message:
-      name: Notification message (Optional)
-      description: 'Default: "{{ motion_sensor_name }} detected movement!"'
-      default: "{{ motion_sensor_name }} detected movement!"
+      name: 通知内容 (可选)
+      description: '默认: "{{ 传感器名称 }} 检测到运动!"'
+      default: "{{ motion_sensor_name }} 检测到有物体运动!"
       
     delay:
-      name: Delay (Optional)
-      description: Wait before creating camera snapshot
+      name: 延迟时间 (可选)
+      description: 创建截图前延迟的时间，会在该时间后开始创建截图（避免只是临时经过的物体）
       default: ""
       selector:
         number:
