@@ -57,15 +57,15 @@ condition:
   entity_id: !input guard_entity
   state: "off"
 
-# action:
-#   - choose:
-#       - conditions: "{{ !guard_model }}"
-#         sequence:
-#           - service: switch.turn_on
-#             target: !input light_target
-action: 
-  - service: switch.turn_on
-    target: !input light_target
+action:
+  - choose:
+      - conditions: "{{ !guard_model }}"
+        sequence:
+          - service: switch.turn_on
+            target: !input light_target
+# action: 
+#   - service: switch.turn_on
+#     target: !input light_target
 # action:
 #   - choose:
 #     - conditon: and
