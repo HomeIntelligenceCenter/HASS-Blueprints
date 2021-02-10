@@ -1,12 +1,12 @@
 blueprint:
   name: 检测到有人时发送画面通知
   description: >
-    当检测到有人运动时，向手机发送一个带有同一位置摄像头截图的通知。
+    当检测到有人运动时，向手机推送一条带有摄像头截图的通知。
   domain: automation
   input:
     motion_sensor:
       name: 动作传感器
-      description: 选择动作传感器，此传感器用于检测是否有运动发生。
+      description: 此传感器用于检测是否有运动发生。
       selector:
           entity:
             domain: binary_sensor
@@ -14,7 +14,7 @@ blueprint:
 
     camera:
       name: 摄像头
-      description: 选择摄像头，此摄像头用于截取动作发生地的图片。
+      description: 此摄像头用于截取动作发生地的图片。
       selector:
         entity:
           domain: camera
