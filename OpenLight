@@ -9,7 +9,7 @@ blueprint:
       selector:
         entity:
           domain: binary_sensor
-          device_class: motion
+          device_class: contact
     guard_model:
       name: 警戒模式
       description: 警戒模式开启时是否自动开灯
@@ -55,7 +55,7 @@ trigger:
 condition:
   condition: state
   entity_id: !input guard_entity
-  state: "true"
+  state: "off"
 
 action:
   - choose:
