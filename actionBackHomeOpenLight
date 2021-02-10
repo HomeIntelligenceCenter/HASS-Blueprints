@@ -1,6 +1,6 @@
 blueprint:
   name: 天黑有人回家时打开灯
-  description: 天黑之后有人回家自动打开客厅灯（不调整其他房间的灯光）.
+  description: 天黑之后有人回家自动打开客厅灯（不调整其他房间的灯光）
   domain: automation
   input:
     trigger_device:
@@ -14,7 +14,7 @@ blueprint:
       name: 警戒模式
       description: 警戒模式开启时是否自动开灯
       selector:
-        boolean:
+        boolean: {}
       default: false
     guard_entity:
       name: 警戒状态
@@ -45,12 +45,12 @@ condition:
   entity_id: !input guard_entity
   state: "off"
 
-action:
-  - choose:
-    - conditions: "{{ guard_model }}"
-      sequence:
-        - service: switch.turn_on
-          target: !input light_target
-# action: 
-#   - service: switch.turn_on
-#     target: !input light_target
+# action:
+#   - choose:
+#     - conditions: "{{ guard_model }}"
+#       sequence:
+#         - service: switch.turn_on
+#           target: !input light_target
+action: 
+  - service: switch.turn_on
+    target: !input light_target
