@@ -14,6 +14,3 @@ NotificationZoneLeave：家庭成员离开指定区域时推送通知
 #动作-完成设备操作动作
 actionBackHomeOpenLight：天黑回家后自动打开灯
 actionMotionLight：指定区域检测到有人活动时自动打开对应的灯，指定时间后自动关闭
-
-
-
