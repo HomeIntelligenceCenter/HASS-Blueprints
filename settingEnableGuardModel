@@ -40,4 +40,4 @@ condition:
 #           target: !input light_target
 action: 
   - service: input_boolean.turn_on
-    target: !input input_boolean
+    target: !input guard_entity
