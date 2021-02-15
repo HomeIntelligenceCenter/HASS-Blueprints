@@ -24,8 +24,8 @@ max_exceeded: silent
 trigger:
   platform: state
   entity_id: !input trigger_person
-  from: "off"
-  to: "on"
+  from: "home"
+  to: "not_home"
 
 condition:
   condition: state
